@@ -1,0 +1,57 @@
+1️⃣ Install Docker
+# Update packages
+sudo yum update -y  
+
+# Install Docker
+sudo yum install -y docker  
+
+# Start & enable Docker service
+sudo systemctl start docker  
+sudo systemctl enable docker  
+
+# Add your user to the Docker group (so you don’t need sudo)
+sudo usermod -aG docker $USER  
+newgrp docker  
+
+# Verify installation
+docker --version  
+docker run hello-world  
+
+2️⃣ Install kubectl (Kubernetes CLI)
+# Download kubectl binary
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+# Make it executable
+chmod +x kubectl  
+
+# Move it to a system path
+sudo mv kubectl /usr/local/bin/  
+
+# Verify installation
+kubectl version --client  
+
+3️⃣ Install Minikube
+# Download Minikube binary
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64  
+
+# Make it executable
+chmod +x minikube  
+
+# Move it to a system path
+sudo mv minikube /usr/local/bin/  
+
+# Verify installation
+minikube version  
+
+4️⃣ Start Minikube with Docker as the Driver
+# Start Minikube using Docker
+minikube start --driver=docker  or minikube start --driver=docker --force
+
+# Verify Minikube is running
+minikube status  
+
+✅ Final Checks
+docker --version  
+kubectl version --client  
+minikube version  
+
